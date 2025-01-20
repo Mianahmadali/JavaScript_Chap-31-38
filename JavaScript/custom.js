@@ -112,6 +112,40 @@ function CalculateTax() {
     
 }
 
+function calculteTex(){
+    var price = +prompt("Enter Price")
+    var taxRate = 17
+    var tax = calculateTex(price , taxRate);
+    let html = "Tax :" + tax;
+    document.getElementById("output").innerHTML = html
+}
+function calculateTex(price , taxRate) {
+    var tax = price * taxRate / 100 ;
+    return tax ;
+}
+function calculateTotalPrice(){
+    var price = +prompt("Enter Number")
+    if (!price) {
+        showToastify("Please enter your price")
+    }
+    var total = calculateTotal(price);
+    let html = "Total :" +Math.round(total);
+    document.getElementById("output").innerHTML= html
+    
+}
+function calculateTotal(price){
+    if (price <1000){
+        var taxRate = 8
+    }
+    else {
+        var taxRate = 17 ;
+    }
+    var tax = calculateTex(price ,taxRate)
+    var total = price + tax;
+    return total
+}
+
+
 
 const clearInput = () => {
     document.getElementById("input").value = ""; // Clear the input field
@@ -122,4 +156,21 @@ const getInputValue = () => {
 }
 function clearOutput(){
     document.getElementById("output").innerHTML = "";
+}
+const showToastify = (msg) => {
+    Toastify({
+        text: msg,
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right,rgb(99, 4, 4),rgb(231, 77, 6))",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+
 }
